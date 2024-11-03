@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const ReviewDetailScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>요리 후기</Text>
+      <Text>빈 화면</Text>
     </View>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 interface Recipe {
   id: string;
@@ -22,14 +23,8 @@ type RootStackParamList = {
   ReviewDetail: undefined;
 };
 
-type RecipeListScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'RecipeList'>;
-
-interface RecipeListScreenProps {
-  navigation: RecipeListScreenNavigationProp;
-}
-
 const recipes: Recipe[] = [
-  { id: '1', name: '김치볶음밥', image: 'https://example.com/recipe1.jpg' },
+  { id: '1', name: '불고기', image: 'https://example.com/recipe1.jpg' },
   { id: '2', name: '잡채', image: 'https://example.com/recipe2.jpg' },
   { id: '3', name: '나시고랭', image: 'https://example.com/recipe3.jpg' },
   { id: '4', name: '김치우동', image: 'https://example.com/recipe4.jpg' },
@@ -41,8 +36,13 @@ const reviews: Review[] = [
   { id: '3', title: '계란찜', content: '간단하고 맛있네요.', rating: 5, author: 'ㅎㅎㅎ' },
 ];
 
-const RecipeListScreen: React.FC<RecipeListScreenProps> = ({ navigation }) => {
+const RecipeListScreen: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [searchQuery, setSearchQuery] = useState('');
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({ title: '' });
+  }, [navigation]);
 
   const renderItem = ({ item }: { item: Recipe }) => (
     <TouchableOpacity
@@ -109,7 +109,7 @@ const RecipeListScreen: React.FC<RecipeListScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 0,
     backgroundColor: '#fff',
   },
   searchContainer: {
@@ -141,13 +141,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 130,
+    height: 130,
     borderRadius: 10,
   },
   name: {
     marginTop: 10,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -178,3 +178,4 @@ const styles = StyleSheet.create({
 });
 
 export default RecipeListScreen;
+
