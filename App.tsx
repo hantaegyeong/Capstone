@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecipeListScreen from './RecipeListScreen';
 import DetailScreen from './DetailScreen';
 import ReviewDetailScreen from './ReviewDetailScreen';
+import ProfileScreen from './ProfileScreen'; 
 import { Ionicons } from '@expo/vector-icons';
 
 export type RootStackParamList = {
@@ -50,7 +51,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeStack} options={{ title: '홈' }} />
         <Tab.Screen name="Upload" component={ReviewDetailScreen} options={{ title: '업로드' }} />
-        <Tab.Screen name="Profile" component={ReviewDetailScreen} options={{ title: '프로필' }} />
+        <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: '프로필' }} /> 
       </Tab.Navigator>
     </NavigationContainer>
   );

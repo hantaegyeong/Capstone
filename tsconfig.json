@@ -6,6 +6,6 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "allowJs": true  
   }
-
 }
